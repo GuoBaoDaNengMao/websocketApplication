@@ -414,7 +414,6 @@ function creatWebsocket() {
             }else if(ms.type == "file"){
                 let exc="."+ms.data.fileData.split(".").pop();//后缀
                 let fileOldName=ms.data.oldName+exc;//文件名
-                let fileName=fileOldName+exc;
                 let fileSize=ms.data.size;
                 if(fileSize<1024){
                     fileSize=fileSize+"B";
@@ -426,7 +425,7 @@ function creatWebsocket() {
                     fileSize=Math.round(fileSize/(1024*1024*1024))+"GB";
                 }
 
-                ms.data ="<a href='"+ms.data.fileData+"' class='downloadFile' download='"+fileOldName+"' title='"+fileName+"'><div class='fileName'>"+fileName+"</div><div class='fileSize'>"+fileSize+"</div></a>";
+                ms.data ="<a href='"+ms.data.fileData+"' class='downloadFile' download='"+fileOldName+"' title='"+fileOldName+"'><div class='fileName'>"+fileOldName+"</div><div class='fileSize'>"+fileSize+"</div></a>";
             }
             chatBox.messageList.push(ms);
             //收到消息自动滚动列表
@@ -678,7 +677,7 @@ var nav = new Vue({
 })
 
 /**
- * 输入框发宋消息
+ * 输入框发送消息
  * httpHost--http://+domain
  */
 var httpHost=window.location.href.split("chat")[0];
@@ -1159,43 +1158,6 @@ inputIframe.onload=function(){
         clearTishi();
     }
 }
-
-// 设置假网页
-
-// function showBossFrame(){
-//     bossFrame.isShow=true;
-// }
-// function hideBossFrame(){
-//     bossFrame.isShow=false;
-// }
-// function switchBossFrame(e){
-//     var eventKeyCode=e.keyCode||e.which||e.charCode;
-//     var eventCtrlKey=e.ctrlKey ||e.altKey|| e.metaKey;
-//     if(eventCtrlKey&&eventKeyCode==81){
-//         if(!bossFrame.isShow){
-//             showBossFrame();
-//         }else{
-//             hideBossFrame();
-//         }
-//     }
-// }
-// var bossFrame=new Vue({
-//     el:"#bossFrame",
-//     data:{
-//         frameSrc:"https://blog.csdn.net/yubo_725/article/details/41801319",
-//         isShow:false
-//     },
-//     methods:{
-        
-//     }
-// })
-// // 聊天窗口切换Boss窗口
-// document.onkeydown=switchBossFrame;
-
-// var bossIFrame=document.getElementById("bossFrame");
-// bossIFrame.onload=function(){
-//     bossIFrame.onkeydown=switchBossFrame;
-// }
 
 /**
  * 设置loading图片隐藏
